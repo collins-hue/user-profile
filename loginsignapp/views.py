@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, get_user_model
 
-from .forms import SignupForm
+from loginsignapp.forms import SignupForm
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_str  # force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -70,10 +70,11 @@ def login_request(request):
                                 backend='django.contrib.auth.backends.ModelBackend')
             if user is not None:
                 login(request, user)
-                return redirect('userprofileapp:home')
+                return redirect('profileapp:home')
             else:
                 messages.error(request, 'Wrong Password or Username')
         else:
             messages.error(request, 'Wrong Password or Username')
     login_form = AuthenticationForm()
     return render(request, template_name='loginsignup/login.html', context={'login_form': login_form})
+ 

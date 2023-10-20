@@ -8,9 +8,9 @@
                 <div class="signin-content">
                     <div class="signin-image">
                         <figure><img src="{% static 'loginsignup/images/signin-image.jpg' %}" alt="sing up image"></figure>
-                         <a href="{% url 'loginsignapp:signup' %}" class="signup-image-link">Not a member Yet?</a>
+                         <a href="{% url 'loginsignapp:signup' %}" class="signup-image-link">Not a member Yet?</a> OR
+                         <a href="{% url 'password_resetapp:password_reset' %}" class="signup-image-link">Forgot Password?</a>
                     </div>
-
                     <div class="signin-form">
                         {% for message in messages %}
                         <div class="alert alert-success" style="color:red" role="alert">

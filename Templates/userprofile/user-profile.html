@@ -24,14 +24,14 @@
                 <section>
                     <div class="inner">
                     	<a href="#" class="avartar">
-                    		<img src="{% static 'Profile/images/avartar.png' %}" alt="">
+                    		<img src="{{current_user_profile.profile_picture.url}}" alt="">
                     	</a>
                     	<div class="form-row form-group">
                     		<div class="form-holder">
-                    			<input type="text" class="form-control" placeholder="First Name">
+                    			<input type="text" class="form-control" placeholder="First Name" value="{{current_user.first_name}}">
                     		</div>
                     		<div class="form-holder">
-                    			<input type="text" class="form-control" placeholder="Last Name">
+                    			<input type="text" class="form-control" placeholder="Last Name"value="{{current_user.last_name}}">
                     		</div>
                     	</div>
                     	<div class="form-row">
@@ -42,25 +42,25 @@
                     	</div>
                     	<div class="form-row">
                     		<div class="form-holder">
-                    			<input type="text" class="form-control" placeholder="Email">
+                    			<input type="text" class="form-control" placeholder="Email" value="{{current_user.email}}">
                     			<i class="zmdi zmdi-email small"></i>
                     		</div>
                     	</div>
                     	<div class="form-row">
                     		<div class="form-holder">
-                    			<input type="text" class="form-control" placeholder="Phone">
+                    			<input type="text" class="form-control" placeholder="Phone" value="{{current_user.contact}}">
                     			<i class="zmdi zmdi-smartphone-android"></i>
                     		</div>
                     	</div>
                     	<div class="form-row">
                     		<div class="form-holder">
-                    			<input type="text" class="form-control" placeholder="Address">
+                    			<input type="text" class="form-control" placeholder="Address" value="{{current_user.address}}">
                                 <i class="zmdi zmdi-map small"></i>
                     		</div>
                     	</div>
                     	<div class="form-row">
                     		<div class="form-holder">
-                    			<input type="text" class="form-control" placeholder="Nation">
+                    			<input type="text" class="form-control" placeholder="Nation" value="">
                                 <i class="zmdi zmdi-account-box-o small"></i>
 
                     		</div>
@@ -73,7 +73,7 @@
                 <section>
                 	<div class="inner">
                 		<a href="#" class="avartar">
-                    		<img src="{% static 'Profile/images/avartar.png' %}" alt="">
+                    		<img src="{{current_user_profile.profile_picture.url}}" alt="">
                     	</a>
                 		<div class="form-row">
                             <div class="select">
@@ -140,7 +140,7 @@
                 <section class="section-3">
                     <div class="inner">
                         <a href="#" class="avartar">
-                            <img src="{% static 'Profile/images/avartar.png' %}" alt="">
+                            <img src="{{current_user_profile.profile_picture.url}}" alt="">
                         </a>
                         <h6>Payment Method</h6>
                         <div class="payment-block">

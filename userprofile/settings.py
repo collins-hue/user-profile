@@ -38,11 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'widget_tweaks',
+#created apps
     'loginsignapp',
     'profileapp',
-
+    'modelsapp',
+    'password_resetapp',
+#installed apps
+   'widget_tweaks',
     'crispy_forms',
 ]
 
@@ -142,5 +144,18 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 MEDIA_URL = '/media/'
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
 
+DEFAULT_AUTO_FIELD = ''
 
-#LOGIN_REDIRECT_URL = '/home/'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.gmail.com'
+
+EMAIL_PORT = '587'
+
+EMAIL_USE_TLS = True
+
+EMAIL_USE_SSL = False
+
+EMAIL_HOST_USER = ''
+
+EMAI_HOST_PASSWORD = ''
