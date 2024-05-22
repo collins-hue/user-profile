@@ -9,6 +9,7 @@ from django.core.mail import send_mail
 from django.http import BadHeaderError, HttpResponse
 from django.contrib import messages
 from django.db.models import Q
+from django.contrib.sites.shortcuts import get_current_site
 
 
 def reset_password(request):
@@ -18,13 +19,14 @@ def reset_password(request):
         if password_reset_form.is_valid():
             data = password_reset_form.cleaned_data['email']
             associated_users = User.objects.filter(Q(email=data))
+            current_site = get_current_site(request)
             if associated_users.exists():
                 for user in associated_users:
                     subject = "Password reset Requested"
                     email_template_name = "passwordReset/password_reset_email.txt"
                     c = {
                         "email": user.email,
-                        'domain': '127.0.0.1:8001',
+                        'domain': current_site.domain,
                         'site_name': 'Website',
                         "uid": urlsafe_base64_encode(force_bytes(user.pk)),
                         "user": user,

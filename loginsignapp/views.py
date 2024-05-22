@@ -4,14 +4,14 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, get_user_model
-
+from django.conf import settings
 from loginsignapp.forms import SignupForm
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_str  # force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from .tokens import account_activation_token
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage, send_mail
 
 
 def finalactivation(request, uidb64, token):
@@ -43,17 +43,20 @@ def signup(request):
             # to get the domain of the current site  
             current_site = get_current_site(request)
             mail_subject = 'Activation link has been sent to your email id'
-            message = render_to_string('mainapp/acc_active_email.html', {
+            message = render_to_string('Templates/loginsignup/acc_active_email.html', {
                 'user': user,
-                'domain': localhost.com,
+                'domain': current_site.domain,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': account_activation_token.make_token(user),
             })
+            from_email = settings.EMAIL_HOST_USER
             to_email = form.cleaned_data.get('email')
-            email = EmailMessage(
-                mail_subject, message, to=[to_email]
+            recipients = [to_email]
+ #           email = EmailMessage
+            send_mail(
+                mail_subject, message, from_email, recipients
             )
-            email.send()
+  #          email.send()
             return HttpResponse('Please confirm your email address to complete the registration')
     else:
         form = SignupForm()
